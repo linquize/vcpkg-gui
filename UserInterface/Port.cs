@@ -74,7 +74,7 @@ namespace Vcpkg
                             case "Description": port.CoreParagraph.Description = item.Value; break;
                             case "Maintainer": port.CoreParagraph.Maintainer = item.Value; break;
                             case "Default-Features": port.CoreParagraph.DefaultFeatures = CommaSplit(item.Value); break;
-                            case "Supports": throw new NotSupportedException();
+                            case "Supports": port.CoreParagraph.Supports = CommaSplit(item.Value); break;
                         }
                 }
                 else if (paragraph.Keys.Contains(FeatureToken))
