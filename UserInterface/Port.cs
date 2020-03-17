@@ -40,9 +40,14 @@ namespace Vcpkg
                 }
                 else
                 {
-                    var lsplit = line.Split(new string[] { ": " }, 2, StringSplitOptions.RemoveEmptyEntries);
-                    paragraph.Add(lsplit[0], lsplit.Length < 2 ? string.Empty : lsplit[1]);
-                    lastkey = lsplit[0];
+                    int colon = line.IndexOf(':');
+                    if (colon > 0)
+                    {
+                        var key = line.Substring(0, colon);
+                        var value = line.Substring(colon + 1);
+                        paragraph.Add(key, value);
+                        lastkey = key;
+                    }
                 }
             }
             if(paragraph.Count >0) result.Add(paragraph);
@@ -131,7 +136,7 @@ namespace Vcpkg
                         case "Depends": status.Depends = CommaSplit(item.Value); break;
                         case "Description": status.Description = item.Value; break;
                         case "Status":
-                            var strs = item.Value.Split(' ');
+                            var strs = item.Value.Trim().Split(' ');
                             status.Want = (Want)Enum.Parse(typeof(Want), strs[0], true);
                             status.State = InstallStateParser[strs[2]];
                             break;
