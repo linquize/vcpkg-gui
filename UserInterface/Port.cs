@@ -65,6 +65,7 @@ namespace Vcpkg
                         switch (item.Key)
                         {
                             case "Version": port.CoreParagraph.Version = item.Value; break;
+                            case "Homepage": port.CoreParagraph.Homepage = item.Value; break;
                             case "Build-Depends": port.CoreParagraph.Depends = CommaSplit(item.Value); break;
                             case "Description": port.CoreParagraph.Description = item.Value; break;
                             case "Maintainer": port.CoreParagraph.Maintainer = item.Value; break;
@@ -157,6 +158,7 @@ namespace Vcpkg
     {
         public string Name { get; set; }
         public string Version { get; set; }
+        public string Homepage { get; set; }
         public string Description { get; set; }
         public string Maintainer { get; set; }
         public string[] Supports { get; set; }

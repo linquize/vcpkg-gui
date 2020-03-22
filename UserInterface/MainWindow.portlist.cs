@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -175,6 +176,17 @@ namespace Vcpkg
         {
             // TODO: need run --dry-run first to check whether --recurse is needed here
             var code = ExecutionDialog.RunVcpkg("remove --outdated", out string result, true);
+        }
+
+        private void MenuBrowseHomepage_Click(object sender, RoutedEventArgs e)
+        {
+            var port = PortsList.SelectedItem as Port;
+            var pkg = port.Name.Trim();
+            var homepage = (port.CoreParagraph.Homepage ?? "").Trim();
+            if (homepage.StartsWith("http://") || homepage.StartsWith("https://"))
+                Process.Start(homepage);
+            else
+                MessageBox.Show($"Homepage not specified in {pkg}", "Browse Homepage", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
         #endregion

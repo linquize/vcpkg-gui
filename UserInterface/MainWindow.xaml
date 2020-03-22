@@ -155,6 +155,8 @@
                                     <MenuItem Header="Show full description" IsCheckable="True"
                                           Checked="MenuShowFullDescription_Checked"
                                           Unchecked="MenuShowFullDescription_Unchecked"/>
+                                    <Separator/>
+                                    <MenuItem Header="Browse Homepage" Click="MenuBrowseHomepage_Click" />
                                 </ContextMenu>
                             </ListView.ContextMenu>
                             <ListView.ItemTemplate>
