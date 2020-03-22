@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -175,6 +177,15 @@ namespace Vcpkg
         {
             // TODO: need run --dry-run first to check whether --recurse is needed here
             var code = ExecutionDialog.RunVcpkg("remove --outdated", out string result, true);
+        }
+
+        private void MenuOpenPackageFolder_Click(object sender, RoutedEventArgs e)
+        {
+            var pkg = (PackagesList.SelectedItem as StatusParagraph).Package.Trim();
+            var arch = (PackagesList.SelectedItem as StatusParagraph).Architecture.Trim();
+            var dir = Path.Combine(Properties.Settings.Default.vcpkg_path, "packages", $"{pkg}_{arch}");
+            if (Directory.Exists(dir))
+                Process.Start(dir);
         }
 
         #endregion

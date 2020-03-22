@@ -245,6 +245,7 @@
                                 <ContextMenu>
                                     <MenuItem Header="Edit" Click="MenuPackageEdit_Click"/>
                                     <MenuItem Header="Edit Build Trees" Click="MenuPackageEditBT_Click"/>
+                                    <MenuItem Header="Open Package Folder" Click="MenuOpenPackageFolder_Click" />
                                     <MenuItem Header="Export as..">
                                         <MenuItem Header="Raw Folder" Click="MenuExportRaw_Click"/>
                                         <MenuItem Header="Zip Archive (.zip)"/>
